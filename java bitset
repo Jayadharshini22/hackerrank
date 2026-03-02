@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(); // Length of BitSets
+        int m = sc.nextInt(); // Number of operations
+
+        BitSet b1 = new BitSet(n);
+        BitSet b2 = new BitSet(n);
+        BitSet[] bitsets = new BitSet[3];
+        bitsets[1] = b1;
+        bitsets[2] = b2;
+
+        for (int i = 0; i < m; i++) {
+            String op = sc.next();
+            int p1 = sc.nextInt();
+            int p2 = sc.nextInt();
+
+            switch (op) {
+                case "AND":
+                    bitsets[p1].and(bitsets[p2]);
+                    break;
+                case "OR":
+                    bitsets[p1].or(bitsets[p2]);
+                    break;
+                case "XOR":
+                    bitsets[p1].xor(bitsets[p2]);
+                    break;
+                case "FLIP":
+                    bitsets[p1].flip(p2);
+                    break;
+                case "SET":
+                    bitsets[p1].set(p2);
+                    break;
+            }
+            System.out.println(b1.cardinality() + " " + b2.cardinality());
+        }
+    }
+}
